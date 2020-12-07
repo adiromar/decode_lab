@@ -16,7 +16,7 @@
         <div class="animated fadeIn">
             <!-- Widgets  -->
             <div class="row">
-                <div class="col-xs-12 col-sm-9">
+                <div class="col-xs-12 col-sm-12">
 
                     <div class="center">
                         <span class="btn btn-app btn-sm btn-light no-hover">

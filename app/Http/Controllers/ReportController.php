@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use Session;
 use Image;
+use Illuminate\Support\Facades\Mail;
 
 class ReportController extends Controller
 {
@@ -16,7 +17,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $title = 'Patient Report';
+        $title = "Patient's Report";
         $patient = Patient::where('result', 'N')->orWhere('result', 'P')->get();
 
         return view('report.index', compact('title','patient'));
@@ -87,4 +88,18 @@ class ReportController extends Controller
     {
         //
     }
+
+    public function show_report(){
+        $title = "Update Patient's Report";
+        $patient = Patient::orderBy('id', 'desc')->get();
+
+        return view('report.show', compact('title','patient'));
+    }
+
+    public function send_mail(Request $request, $id){
+        $sample = Patient::findOrFail($id);
+
+        Mail::to($sample->email)->send('hello');
+    }
+
 }

@@ -8,6 +8,8 @@
         "php": ">=7.0.0",
         "barryvdh/laravel-dompdf": "^0.8.7",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "^7.2",
+        "haruncpi/laravel-id-generator": "^1.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0"
     },

@@ -60,4 +60,18 @@ class AdminController extends Controller
 
         return view('admin.pdfview', compact('data'));
     }
+
+    public function fetch_sample_collection(Request $request){
+        // dd($request);
+        $id = $request->cat_id;
+        $parent = Patient::where('id', $id)->first();
+
+        $html = view('patient.fetch_sample')->with(compact('parent'))->render();
+        return response()->json(['success' => true, 'html' => $html]);
+    }
+
+    public function fetch_patient_record($id){
+        $sample = Patient::where('id', $id)->get();
+        return $sample;
+    }
 }

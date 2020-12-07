@@ -87,11 +87,19 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
+                <li class="">
+                    <a href="{{ route('show_report') }}">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Update Sample Report
+                        </a>
+    
+                        <b class="arrow"></b>
+                    </li>
 
                 <li class="">
                 <a href="{{ route('report.index') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        View Record
+                        Print Report
                     </a>
 
                     <b class="arrow"></b>

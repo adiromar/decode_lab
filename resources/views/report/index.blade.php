@@ -30,7 +30,8 @@
                     </thead>
                     <tbody>
                         @php
-                         $k = 1;   
+                         $k = 1; 
+                        // dd($patient);
                         @endphp
                         @foreach ($patient as $pat)
                         <tr>
@@ -40,6 +41,7 @@
                             <td>{{ $pat->patient_age }}</td>
                             <td>{{ $pat->gender }}</td>
                             <td>{{ $pat->phone }}</td>
+
                             <td><?php if($pat->result == 'N' ):
                                 echo '<span class="label label-sm label-danger">Negative</span>';
                             elseif($pat->result == 'P'):
@@ -49,18 +51,10 @@
                             endif;
                             ?></td>
                             <td>
-                            {{-- <a href="{{ route('patient.edit', $pat->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a> --}}
-                                {{-- <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> --}}
-                                <a href="{{ route('print_pdf', $pat->id) }}" target="_blank" class="btn btn-secondary btn-sm">Print PDF</a>
-                                <a href="{{ route('down_pdf', $pat->id) }}" class="btn btn-warning btn-sm">Download PDF</a>
-
-                                {{-- <form action="{{route('patient.destroy', $pat->id)}}" onclick="event.preventDefault();
-                                    var r=confirm('Are you sure you want to delete this item?');
-                                    if(r== true){ this.submit(); }" method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('delete') }}
-                                    <input type="submit" class="btn btn-danger btn-sm mt-2" value="Delete">
-                                    </form> --}}
+                                <a href="{{ route('print_pdf', $pat->id) }}" target="_blank" class="btn btn-success btn-sm">Print PDF</a>
+                                <a href="{{ route('down_pdf', $pat->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> PDF</a>
+                                <a href="" class="btn btn-primary btn-sm"><i class="fa fa-envelope"></i> E-mail</a>
+                                <a href="" class="btn btn-info btn-sm"><i class="fa fa-phone"></i> Msg</a>
                             </td>
                         </tr>
                         @php

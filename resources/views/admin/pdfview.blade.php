@@ -35,7 +35,7 @@
 <table class="d-tbl" >
     <tr>
         <th width="150">Sample ID</th>
-        <td width="150">-</td>
+        <td width="150">{{ $patient->lab_id}}</td>
         <td width="150">-</td>
 
         <th width="150">Specimen</th>
@@ -51,9 +51,12 @@
         <td width="150"><?= $patient->specimen_coll_site?></td>
         <td width="150">-</td>
     </tr>
+    @php
+        $address = $patient->province . ' ' . $patient->district . ' ' .$patient->municipality . ' ' . $patient->ward;
+    @endphp
     <tr>
         <th width="150">Address</th>
-        <td width="150"><?= $patient->address?></td>
+        <td width="150"><?= $address?></td>
         <td width="150">-</td>
 
         <th width="150">Specimen Collection Date</th>
