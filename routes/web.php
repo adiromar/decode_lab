@@ -27,7 +27,11 @@ Route::post('/createUser', 'UserController@store')->name('create_user');
 // Route::put('/updateUser/{id}', 'UserController@update')->name('update_user');
 // Route::post('fetch/sample_coll', 'AdminController@fetch_sample_collection')->name('fetch_sample');
 Route::get('fetch/patient_record/{id}', 'AdminController@fetch_patient_record')->name('get_sample');
+Route::get('/blog/{slug}', 'BlogController@news')->name('news');
+Route::get('/bloglist', 'BlogController@news_list')->name('news_list');
 
+
+// admin
 Route::group([
     'prefix' => 'admin',
     'middleware' => 'auth',
@@ -44,7 +48,8 @@ function(){
 
     Route::resource('user', 'UserController');
     Route::resource('report', 'ReportController');
-    
+    Route::resource('blog', 'BlogController');
+
     Route::post('fetch/sample_coll', 'AdminController@fetch_sample_collection')->name('fetch_sample');
     Route::post('fetch/report_coll', 'PatientController@fetch_report_collection')->name('fetch_report');
 

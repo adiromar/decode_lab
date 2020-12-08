@@ -81,13 +81,13 @@
 
 		$('.services-slider').owlCarousel({
 			loop:true,
-	    autoplay: true,
+	    autoplay: false,
 	    margin:0,
 	    animateOut: 'fadeOut',
 	    animateIn: 'fadeIn',
-	    nav:true,
+	    nav: true,
 	    dots: true,
-	    autoplayHoverPause: false,
+	    autoplayHoverPause: true,
 	    items: 4,
 	    navText : ["<span class='ion-ios-arrow-back'></span>","<span class='ion-ios-arrow-forward'></span>"],
 	    responsive:{

@@ -22,8 +22,17 @@
 <div class="wrap">
 <div class="container">
       <div class="row justify-content-between">
-          <div class="col-md-3 mb-md-0 mb-4 d-flex align-items-center">
-              <a class="navbar-brand" href="{{ url('/') }}">DGRC</a>
+          <div class="col-md-5 mb-md-0 mb-4 d-flex align-items-center">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('pdf_assets/main_logo.png') }}" height="auto" width="auto" alt="DGRC">
+            </a>
+
+            <div class="nav-tag">
+               
+                <h5 class="deco">Decode</h5>
+                <h6 class="tagline">Genomics and Research Center</h6>
+            </div>
+            
           </div>
           <div class="col-md-7">
               <div class="row">

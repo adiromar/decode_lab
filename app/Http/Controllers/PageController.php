@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Blog;
 
-
-class FrontController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +13,7 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $title = "Decode Lab & Genomics Research Center";
-        $blogs = Blog::latest()->get();
-
-        return view('front.index', compact('title','blogs'));
+        //
     }
 
     /**

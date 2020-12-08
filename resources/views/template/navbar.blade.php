@@ -8,14 +8,15 @@
     </div>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="team.html" class="nav-link">Team</a></li>
-            <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="department.html" class="nav-link">Departments</a></li>
-            <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-            <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="{{ url('/bloglist') }}" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Cancer Genetics</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Infectious Disease</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Molecular Genetics</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Transplant Infectious Disease</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Our Services</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Our Team</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
         </ul>
       </div>
     </div>
