@@ -141,6 +141,37 @@
 
         <li class="">
             <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-file"></i>
+                <span class="menu-text"> Page Management </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="{{  route('page.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create Page
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                <a href="{{ route('page.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        View Page
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-users"></i>
                 <span class="menu-text"> User Management </span>
 

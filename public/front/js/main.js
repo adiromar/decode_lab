@@ -86,7 +86,7 @@
 	    animateOut: 'fadeOut',
 	    animateIn: 'fadeIn',
 	    nav: true,
-	    dots: true,
+	    dots: false,
 	    autoplayHoverPause: true,
 	    items: 4,
 	    navText : ["<span class='ion-ios-arrow-back'></span>","<span class='ion-ios-arrow-forward'></span>"],

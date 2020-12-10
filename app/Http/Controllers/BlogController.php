@@ -149,7 +149,7 @@ class BlogController extends Controller
         return redirect()->back();
     }
     public function news_list(){
-        $list = Blog::latest()->get();
+        $list = Blog::latest()->paginate(1);
         $title = "Blog Details";
 
         return view('blog.news_list', compact('title','list'));

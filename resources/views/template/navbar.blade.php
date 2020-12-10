@@ -10,10 +10,10 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="{{ url('/bloglist') }}" class="nav-link">Blog</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Cancer Genetics</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Infectious Disease</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Molecular Genetics</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Transplant Infectious Disease</a></li>
+        <li class="nav-item"><a href="{{ url('cancer-genetics') }}" class="nav-link">Cancer Genetics</a></li>
+            <li class="nav-item"><a href="{{ url('infectious-disease') }}" class="nav-link">Infectious Disease</a></li>
+            <li class="nav-item"><a href="{{ url('molecular-genetics') }}" class="nav-link">Molecular Genetics</a></li>
+            <li class="nav-item"><a href="{{ url('transplant-infectious-disease') }}" class="nav-link">Transplant Infectious Disease</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Our Services</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Our Team</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>

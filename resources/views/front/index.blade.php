@@ -107,7 +107,7 @@
         </div>
 
         <div class="find-test text-center">
-            <p><a href="#" class="btn btn-primary">Find A Test</a></p>
+        <p><a href="{{ url('cancer-genetics') }}" class="btn btn-primary">Find A Test</a></p>
         </div>
       </div>
       
@@ -124,7 +124,7 @@
           </div>
         </div> 
         <div class="find-test text-center">
-            <p><a href="#" class="btn btn-primary">Find A Test</a></p>
+            <p><a href="{{ url('infectious-disease') }}" class="btn btn-primary">Find A Test</a></p>
         </div>
 
       </div>
@@ -142,7 +142,7 @@
           </div>
         </div>
         <div class="find-test text-center">
-            <p><a href="#" class="btn btn-primary">Find A Test</a></p>
+            <p><a href="{{ url('transplant-infectious-disease') }}" class="btn btn-primary">Find A Test</a></p>
         </div>
       </div>
 
@@ -159,7 +159,7 @@
           </div>
         </div>
         <div class="find-test text-center">
-            <p><a href="#" class="btn btn-primary">Find A Test</a></p>
+            <p><a href="{{ url('molecular-genetics') }}" class="btn btn-primary">Find A Test</a></p>
         </div>
       </div>
 
@@ -455,7 +455,7 @@
                   <div class="image-div">
                   <a href="blog-single.html" class="block-20-new rounded" style="background-image: url('{{ asset('uploads/blog/thumbnails/'.$item->image) }}');">
                   </a>
-                    <p class="categories">{{ $item->slug }}</p>
+                    <p class="categories">{{ $item->subtitle }}</p>
                   </div>
                   <div class="text mt-3">
                     
@@ -466,7 +466,7 @@
                         <span>{{ $item->blog_title }}</span>
                       </div>
                     </div>
-                    <h3 class="heading text-center"><a href="#" class="btn btn-primary">Read More</a></h3>
+                  <h3 class="heading text-center"><a href="{{ route('news', $item->slug) }}" class="btn btn-primary">Read More</a></h3>
                     
                   </div>
                 </div>

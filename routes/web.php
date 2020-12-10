@@ -30,6 +30,8 @@ Route::get('fetch/patient_record/{id}', 'AdminController@fetch_patient_record')-
 Route::get('/blog/{slug}', 'BlogController@news')->name('news');
 Route::get('/bloglist', 'BlogController@news_list')->name('news_list');
 
+Route::get('/{slug}', 'PageController@news')->name('news_page');
+
 
 // admin
 Route::group([
@@ -49,6 +51,7 @@ function(){
     Route::resource('user', 'UserController');
     Route::resource('report', 'ReportController');
     Route::resource('blog', 'BlogController');
+    Route::resource('page', 'PageController');
 
     Route::post('fetch/sample_coll', 'AdminController@fetch_sample_collection')->name('fetch_sample');
     Route::post('fetch/report_coll', 'PatientController@fetch_report_collection')->name('fetch_report');

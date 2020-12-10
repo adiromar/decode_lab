@@ -3,7 +3,7 @@
 @section('content')
     
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url( {{ asset('uploads/blog/'.$blog->image)}} );" data-stellar-background-ratio="0.5">
+{{-- <section class="hero-wrap hero-wrap-2" style="background-image: url( {{ asset('uploads/blog/'.$blog->image)}} );" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text align-items-end">
@@ -13,19 +13,19 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <section class="ftco-section ftco-degree-bg">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 ftco-animate f-blog-section">
-            <p>
+            {{-- <p>
             <img src="{{ asset('uploads/blog/'.$blog->image)}}" alt="" class="img-fluid">
-          </p>
-          <h2 class="mb-3">{{ $blog->title }}</h2>
+          </p> --}}
+          <h2 class="mb-3">{{ $page->page_title }}</h2>
           
 
-        <p>{!! $blog->content !!}</p>
+        <p>{!! $page->content !!}</p>
 
 
           <div class="tag-widget post-tag-container mb-5 mt-5">
