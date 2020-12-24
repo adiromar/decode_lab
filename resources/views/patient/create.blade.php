@@ -5,7 +5,7 @@
 @endsection --}}
 
 @section('content')
-       
+
 
           <!-- Content -->
           <div class="content">
@@ -13,7 +13,7 @@
             <div class="animated fadeIn">
                 <!-- Widgets  -->
                 <div class="main-content">
-                   
+    
 
                     <div class="row pt-3">
                         <div class="col-md-12 col-12">
@@ -23,193 +23,323 @@
                                 </div>
                                 <div class="widget-body">
                                     <div class="widget-main">
-                                        <form action="{{ route('patient.store') }}" method="post" enctype="multipart/form-data" class="">
-                                            {{ csrf_field() }}
+                                        
+    <form action="{{ route('patient.store') }}" method="post" enctype="multipart/form-data" style="padding-bottom: 15px;">
+        {{ csrf_field() }}
+        
+    <div class="row">
+        <h5 class="mdl-h5">Test Option</h5>
+        <div class="col-md-3 col-12 col-offset-8">
+            <label>Test Option </label>
+            
+            <select name="test_option" class="form-control">
+                <option value="">--Select--</option>
+                <option value="covid">COVID-19</option>
+                <option value="fever">Fever</option>
+                <option value="tb">TB</option>
+                <option value="hiv">HIV</option>
+            </select>
+        </div>
+    </div>
 
-                                            <div class="form-horizontal">
-                                                {{-- updated --}}
-                                                <div class="row form-group">
-                                                    {{-- <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Lab Id</h5>
-                                                        <input type="text" name="lab_id" class="input-sm">
-                                                    </div> --}}
+    <div class="row">
 
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Patient's Name <span class="req_red">*</span></h5>
-                                                        <input type="text" name="patient_name" class="form-control" placeholder="Full Name" required>
-                                                    </div>
+        <h5 class="mdl-h5">Personal Details</h5>
+        <div class="col-md-4 col-12">
+            <label>Patient's Name <span class="req_red">*</span></label>
+            <input type="text" name="patient_name" placeholder="Full Name" class="form-control">
+        </div>
 
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Patient's Age<span class="req_red">*</span></h5>
-                                                        <input type="number" name="patient_age" min="1" max="112" class="form-control">
-                                                    </div>
+        <div class="col-md-2 col-12">
+            <label>Patient's Age</label>
+            <input type="number" name="patient_age" min="1" max="115"  class="form-control">
+        </div>
 
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Gender <span class="req_red">*</span></h5>
-                                                            <div class="form-check">
-                                                                <div class="radio">
-                                                                    <label for="radio1" class="form-check-label ">
-                                                                        <input type="radio" id="radio1" name="gender" value="male" class="form-check-input" required>Male
-                                                                    </label>
-                                                                    <label for="radio2" class="form-check-label" style="margin-left: 8px;">
-                                                                        <input type="radio" id="radio2" name="gender" value="female" class="form-check-input">Female
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Phone No. <span class="req_red">*</span></h5>
-                                                        <input type="text" name="phone" class="form-control" title="Mobile should be 10 Digits" pattern="[1-9]{1}[0-9]{9}" required>
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Email. <span class="req_red">*</span></h5>
-                                                        <input type="text" name="email" class="form-control" required>
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Address <span class="req_red">*</span></h5>
-                                                        <input type="text" name="address" class="form-control" required>
-                                                    </div>
-                                                </div>
+        <div class="col-md-3 col-12">
+            <label>Gender <span class="req_red">*</span></label>
+            <div class="form-check">
+                <div class="radio">
+                    <label for="radio1" class="form-check-label ">
+                    <input type="radio" id="radio1" name="gender" value="male" class="form-check-input"  required>Male
+                    </label>
+                    <label for="radio2" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio2" name="gender" value="female" class="form-check-input">Female
+                    </label>
+                    <label for="radio2" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio22" name="gender" value="other" class="form-check-input">Other
+                    </label>
+                </div>
+            </div>
+        </div>
 
-                                                <div class="row form-group">
-                                                    
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Refering Physician<span class="req_red">*</span></h5>
-                                                        <input type="text" name="refering_physician" class="form-control" required>
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Specimen</h5>
-                                                        {{-- <input type="text" name="specimen" class="form-control" > --}}
-                                                        <select name="specimen" class="input-sm">
-                                                            <option value="Nasopharyngeal">Nasopharyngeal</option>
-                                                            <option value="Oropharyngeal">Oropharyngeal (Throat)</option>
-                                                            <option value="Sputum">Sputum</option>
-                                                            <option value="Endotracheal Aspirate">Endotracheal Aspirate</option>
-                                                            <option value="Bronchoiolaveolar">Bronchoiolaveolar</option>
-                                                            <option value="Others">Others</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Specimen Collection Site </h5>
-                                                        <input type="text" name="specimen_coll_site" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Specimen Collection Date </h5>
-                                                        <input type="date" name="specimen_coll_date" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Specimen Collection Time </h5>
-                                                        <input type="datetime-local" name="specimen_coll_time" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Reporting Date</h5>
-                                                        <input type="date" name="reporting_date" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row form-group">
-                                                    
-
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Symptoms</h5> 
-                                                        <select multiple name="symptoms" class="form-control sel-sm chosen-select" id="form-field-select-4">
-                                                            <option value="ili">ILI</option>
-                                                            <option value="fever">Fever</option>
-                                                            <option value="cough">Cough</option>
-                                                            <option value="sari">SARI</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Co Morbidity</h5>
-                                                        <input type="text" name="morbidity" class="form-control">
-                                                    </div>
-
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h6>Temperature Recorded (°F)</h6>
-                                                        <input type="number" name="temperature" min="32" max="212"class="form-control">
-                                                    </div>
-
-                                                    <div class="col-md-2 col-sm-2 col-12">
-                                                        <h5>Sputum</h5>
-                                                        <div class="form-check">
-                                                            <div class="radio">
-                                                                <label for="radio3" class="form-check-label ">
-                                                                    <input type="radio" id="radio3" name="sputum" value="1" class="form-check-input" required>Yes
-                                                                </label>
-                                                                <label for="radio4" class="form-check-label" style="margin-left: 8px;">
-                                                                    <input type="radio" id="radio4" name="sputum" value="0" class="form-check-input">No
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4 col-sm-4 col-12">
-                                                        <h5>Additional Symptoms (if any)</h5>
-                                                        <textarea name="symptoms_if_any" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row form-group">
-                                                    <div class="col-md-4 col-sm-4 col-12">
-                                                        <h5>Travel History in Last 14 Days</h5>
-                                                        <div class="form-check">
-                                                            <div class="radio">
-                                                                <label for="radio5" class="form-check-label ">
-                                                                    <input type="radio" id="radio5" name="travel_history" value="1" class="form-check-input" required>Yes
-                                                                </label>
-                                                                <label for="radio6" class="form-check-label" style="margin-left: 8px;">
-                                                                    <input type="radio" id="radio6" name="travel_history" value="0" class="form-check-input">No
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4 col-sm-4 col-12">
-                                                        <h5>Country Visited By You (if yes)</h5>
-                                                        <input type="text" name="country_visited" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row form-group">
-                                                    <div class="col-md-4 col-sm-4 col-12">
-                                                        <h5>H/O close contact with Positive COVID-19 Patint ?</h5>
-                                                        <div class="form-check">
-                                                            <div class="radio">
-                                                                <label for="radio7" class="form-check-label ">
-                                                                    <input type="radio" id="radio7" name="close_contact" value="1" class="form-check-input" required>Yes
-                                                                </label>
-                                                                <label for="radio8" class="form-check-label" style="margin-left: 8px;">
-                                                                    <input type="radio" id="radio8" name="close_contact" value="0" class="form-check-input">No
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4 col-sm-4 col-12">
-                                                        <h5>Is Patient Admitted in Isolation Ward/Unit in hospital ?</h5>
-                                                        <div class="form-check">
-                                                            <div class="radio">
-                                                                <label for="radio9" class="form-check-label ">
-                                                                    <input type="radio" id="radio9" name="admit_isolation_ward" value="1" class="form-check-input" required>Yes
-                                                                </label>
-                                                                <label for="radio10" class="form-check-label" style="margin-left: 8px;">
-                                                                    <input type="radio" id="radio10" name="admit_isolation_ward" value="0" class="form-check-input">No
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+        <div class="col-md-3 col-12">
+            <label>DOB</label>
+        <input type="date" name="dob" class="form-control">
+        </div>
+    </div>
 
 
-                                                <div class="row">
-                                                    <div class="col-md-10 col-12">
-                                                        <input type="submit" class="btn btn-primary btn-sm ml-2" value="Submit">
-                                                    </div>
-                                                </div>
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">Patient's Current Address</h5>
 
-                                            </div>
-                                        </form>
+        <div class="col-md-3 col-12">
+            <label>Province</label>
+            <select name="province" class="form-control">
+                <option value="1">Province 1</option>
+                <option value="2">Province 2</option>
+                <option value="3">Province 3</option>
+                <option value="4">Province 4</option>
+                <option value="5">Province 5</option>
+                <option value="6">Province 6</option>
+                <option value="7">Province 7</option>
+            </select>
+        </div>
+
+        <div class="col-md-3 col-12">
+            <label>District <span class="req_red">*</span></label>
+
+            @php
+                $lists = App\DistrictLists::orderBy('district_name', 'asc')->get();
+                
+            @endphp
+            <select name="district" class="form-control">
+                    <option value="">-----------</option>
+                @foreach ($lists as $item)
+                    <option value="{{ $item->district_name }}" >{{ ucwords($item->district_name) }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Municipality</label>
+            <input type="text" name="municipality" class="form-control">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Ward</label>
+            <select name="ward" class="form-control">
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+                <option value="4" >4</option>
+                <option value="5" >5</option>
+                <option value="6" >6</option>
+                <option value="7" >7</option>
+                <option value="8" >8</option>
+                <option value="9" >9</option>
+                <option value="10" >10</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">Patient's Contact Details</h5>
+
+        <div class="col-md-3 col-12">
+            <label>Landline</label>
+            <input type="text" name="landline" class="form-control">
+        </div>
+
+        <div class="col-md-3 col-12">
+            <label>Mobile <span class="req_red">*</span></label>
+            <input type="text" name="phone" title="Mobile should be 10 Digits" pattern="[1-9]{1}[0-9]{9}" class="form-control" placeholder="Phone No." required>
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Email <span class="req_red">*</span></label>
+            <input type="text" name="email" placeholder="E-mail" class="form-control">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Passport No.</label>
+            <input type="text" name="passport" class="form-control">
+        </div>
+
+        <div class="col-md-12 col-12">
+            <a href="#" id="add_email">+ Additional E-mail</a>
+        </div>
+
+        <div class="col-md-3 col-12" style="display: none;" id="show-email-1">
+            <label>Email 1</label>
+            <input type="text" name="email_1" class="form-control">
+        </div>
+        <div class="col-md-3 col-12" style="display: none;" id="show-email-2">
+            <label>Email 2</label>
+            <input type="text" name="email_2" class="form-control">
+        </div>
+        
+    </div>
+
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">Specimen Details</h5>
+
+        <div class="col-md-3 col-12">
+            <label>Specimen</label>
+            <select name="specimen" class="form-control">
+                <option value="Nasopharyngeal" >Naso / Opharyngeal</option>
+                <option value="Oropharyngeal" >Oropharyngeal (Throat)</option>
+                <option value="Sputum" >Sputum</option>
+                <option value="Endotracheal Aspirate" >Endotracheal Aspirate</option>
+                <option value="Bronchoiolaveolar" >Bronchoiolaveolar</option>
+                <option value="Others" >Others</option>
+            </select>
+        </div>
+
+        <div class="col-md-3 col-12">
+            <label>Specimen Collection Site</label>
+            <input type="text" name="specimen_coll_site"  class="form-control">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Specimen Collection Date</label>
+            <input type="date" name="specimen_coll_date"  class="form-control">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Specimen Collection Time</label>
+            <input type="datetime-local" name="specimen_coll_time"  class="form-control">
+        </div>
+        {{-- <div class="col-md-3 col-12" style="margin-top: 8px;">
+            <label>Reporting Time</label>
+            <input type="date" name="reporting_time"  class="form-control">
+        </div> --}}
+    </div>
+
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">Symptoms Details</h5>
+
+        <div class="col-md-4 col-12">
+            <label>Symptoms</label>
+            <div class="form-check">
+                <div class="radio">
+                    <label for="radio5" class="form-check-label ">
+                    <input type="radio" id="radio5" name="symptoms" value="ili" class="form-check-input"  >ILI
+                    </label>
+                    <label for="radio6" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio6" name="symptoms" value="fever" class="form-check-input" >Fever
+                    </label>
+                    <label for="radio7" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio7" name="symptoms" value="cough" class="form-check-input" >Cough
+                    </label>
+                    <label for="radio8" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio8" name="symptoms" value="sari" class="form-check-input" >SARI
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+            <label>Co Morbidity</label>
+            <input type="text" name="mornidity"  class="form-control">
+        </div>
+        <div class="col-md-2 col-12">
+            <label>Temperature (°F)</label>
+            <input type="number" name="temperature" min="96" max="108" step="0.1" class="form-control">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Sputum</label>
+            <select name="sputum" class="form-control">
+                <option value="1" >Yes</option>
+                <option value="0" >No</option>
+            </select>
+        </div>
+
+        <div class="col-md-12 col-12" style="margin: 12px 0;">
+            <label>Additional Symptoms (if any)</label>
+            <textarea rows="2" cols="50" name="symptoms_if_any"></textarea>
+        </div>
+
+
+    </div>
+
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">History Details</h5>
+
+        <div class="col-md-3 col-12">
+            <label>Travel History (Last 14 Days)</label>
+            <div class="form-check">
+                <div class="radio">
+                    <label for="radio9" class="form-check-label ">
+                    <input type="radio" id="radio9" name="travel_history" value="1" class="form-check-input"  >Yes
+                    </label>
+                    <label for="radio10" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio10" name="travel_history" value="0" class="form-check-input" >No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-12 country-div">
+            <label>Country Visited By You (if yes)</label>
+            
+            @php
+                $country = App\DistrictLists::getCountries();
+                // dd($country);
+            @endphp
+            <select name="country_visited" class="form-control">
+                <option value="">Select Country</option>
+            @foreach ($country as $val)
+                <option value="{{ $val }}">{{ $val }}</option>
+            @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">Contact Tracing</h5>
+
+        <div class="col-md-6 col-12">
+            <label>H/O Close contact with Positive COVID-19 Patient</label>
+            <div class="form-check">
+                <div class="radio">
+                    <label for="radio11" class="form-check-label ">
+                    <input type="radio" id="radio11" name="close_contact" value="1" class="form-check-input"  >Yes
+                    </label>
+                    <label for="radio12" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio12" name="close_contact" value="0" class="form-check-input" >No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <label>Is Patient admitted in isolation ward/unit in hospital?</label>
+            <div class="form-check">
+                <div class="radio">
+                    <label for="radio13" class="form-check-label ">
+                    <input type="radio" id="radio13" name="admit_isolation_ward" value="1" class="form-check-input"  >Yes
+                    </label>
+                    <label for="radio14" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio14" name="admit_isolation_ward" value="0" class="form-check-input" >No
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">Other Info</h5>
+
+        <div class="col-md-3 col-12">
+            <label>Reference</label>
+            <input type="text" name="reference" class="form-control">
+        </div>
+
+        <div class="col-md-3 col-12">
+            <label>Remark</label>
+            <input type="text" name="remark" class="form-control">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Referred By</label>
+            <input type="text" name="refering_physician" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="row" style="padding: 12px 0 0 12px;">
+        <input type="submit" class="btn btn-primary btn-sm" value="Insert Record">
+    </div>
+        
+
+
+    </form>
+
+
+
                                     </div>
                                 </div>
 
@@ -219,138 +349,23 @@
                     </div>
                 </div>
 
-                {{-- <div class="row">
-
-                    <div class="col-lg-12 col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>Patient Database</strong> Form
-                            </div>
-                            <div class="card-body card-block">
-                            
-                            @include('errors.errors')
-
-                            <form action="{{ route('patient.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                {{ csrf_field() }}
-                                
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Lab ID</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="lab_id" placeholder="Lab Id" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="email-input" class=" form-control-label">Patient Name</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="email-input" name="patient_name" placeholder="Full Name" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Age</label></div>
-                                        <div class="col-12 col-md-9"><input type="number" id="password-input" name="patient_age" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Gender</label></div>
-                                        <div class="col col-md-9">
-                                            <div class="form-check">
-                                                <div class="radio">
-                                                    <label for="radio1" class="form-check-label ">
-                                                        <input type="radio" id="radio1" name="gender" value="male" class="form-check-input">Male
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label for="radio2" class="form-check-label ">
-                                                        <input type="radio" id="radio2" name="gender" value="female" class="form-check-input">Female
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Phone Number</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="password-input" name="phone" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Email</label></div>
-                                        <div class="col-12 col-md-9"><input type="email" id="password-input" name="email" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group pb-3">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Address</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" id="password-input" name="address" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <hr>
-
-                                    <div class="row form-group pt-3">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Refering Physician</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" name="refering_physician" placeholder="Refering Physician" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Specimen</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" name="specimen"  class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Specimen Collection Site</label></div>
-                                        <div class="col-12 col-md-9"><input type="text" name="specimen_coll_site"  class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Specimen Collection Date</label></div>
-                                        <div class="col-12 col-md-9"><input type="date" name="specimen_coll_date"  class="form-control">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Specimen Collection Time</label></div>
-                                        <div class="col-12 col-md-9"><input type="datetime-local" name="specimen_coll_time" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Reporting Date</label></div>
-                                        <div class="col-12 col-md-9"><input type="date" name="reporting_date" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Reporting Time</label></div>
-                                        <div class="col-12 col-md-9"><input type="datetime-local" name="reporting_time" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                    
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-
-                                </form>
-                            </div>
-
-                        </div>
-                    
-                    </div>
-                </div>  --}}
 
             </div>
           </div>
+
+          <script src="{{ asset('adm/assets/js/jquery-2.1.4.min.js') }}"></script>
+          {{-- <script src="{{ asset('adm/assets/js/bootstrap.min.js') }}"></script> --}}
+          
+          <script>
+            $(document).ready(function(){
+                $('#add_email').click(function(e) {
+                e.preventDefault();
+                    $('#show-email-1').fadeIn(" slow ");
+                    $('#show-email-2').fadeIn(" slow ");
+
+                });
+            });
+           </script>
+
 @endsection
 

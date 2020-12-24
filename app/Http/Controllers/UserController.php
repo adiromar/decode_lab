@@ -66,25 +66,19 @@ class UserController extends Controller
         $user->gender = $request->gender;
         // $user->user_role = $request->user_role;
         $user->phone = $request->phone;
+        $user->suspend = $request->suspend;
 
         $user->save();
         // get user inserted id
         $uid = $user->id;
+        $roleid = $request->user_role;
 
-        if ( isset($request->user_role) && $request->user_role == 2 ) {
+        if ( isset($roleid) && isset($uid) ) {
 
             DB::table('role_user')->insert([
                 'user_id' => $uid,
-                'role_id' => 2,
+                'role_id' => $roleid,
             ]);            
-            
-        }else{
-
-            DB::table('role_user')->insert([
-                'user_id' => $uid,
-                'role_id' => 3,
-            ]);
-
         }
 
         Session::flash('success', 'Succesfully Added User.');
@@ -128,7 +122,7 @@ class UserController extends Controller
         $this->validateWith([
             'full_name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191',
-            'password' => 'required|string|min:6|confirmed',
+            // 'password' => 'required|string|min:6|confirmed',
             'user_role' => 'required'
         ]);
         
@@ -144,14 +138,15 @@ class UserController extends Controller
         $user->gender = $request->gender;
         // $user->user_role = $request->user_role;
         $user->phone = $request->phone;
-
+        $user->suspend = $request->suspend;
+        
         $user->save();
         // get user inserted id
         $uid = $request->user_role;
 
-        if ( isset($uid) && $uid == 2 || isset($request->user_role) && $uid == 3 ) {
+        if ( isset($uid) ) {
 
-            DB::table('role_user')->where('user_id', $uid)->update([
+            DB::table('role_user')->where('user_id', $id)->update([
                 'role_id' => $uid,
             ]);            
         }

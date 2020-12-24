@@ -11,7 +11,7 @@ class DistrictLists extends Model
 
     public static function getCountries(){
         
-        $lists = array('Select a Country' => 'Select a Country',
+        $lists = array(
             'Ascension Island' => 'Ascension Island',
             'Andorra' => 'Andorra',
             'United Arab Emirates' => 'United Arab Emirates',

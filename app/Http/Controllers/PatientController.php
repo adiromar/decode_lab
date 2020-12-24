@@ -25,7 +25,7 @@ class PatientController extends Controller
         if(Auth::user()->roles()->first()->role == 'User'):
             $patient = Patient::where('user_id', $user_id)->get();
         else:
-            $patient = Patient::get();
+            $patient = Patient::latest()->get();
         endif;
         
 
@@ -74,11 +74,19 @@ class PatientController extends Controller
         $pat = new Patient;
 
         $pat->lab_id = ( string ) $lab_id;
+        $pat->test_option = $request->test_option;
         $pat->patient_name = $request->patient_name;
         $pat->patient_age = $request->patient_age;
         $pat->gender = $request->gender;
         $pat->phone = $request->phone;
+        $pat->dob = $request->dob;
+        $pat->landline = $request->landline;
         $pat->email = $request->email;
+
+        if($request->email || $request->email_2){
+            $pat->email_1 = $request->email_1;
+            $pat->email_2 = $request->email_2;
+        }
         $pat->province = $request->province;
         $pat->district = $request->district;
         $pat->municipality = $request->municipality;
@@ -95,11 +103,16 @@ class PatientController extends Controller
         $pat->morbidity = $request->morbidity;
         $pat->temperature = $request->temperature;
         $pat->sputum = $request->sputum;
+        $pat->symptoms = $request->symptoms;
         $pat->symptoms_if_any = $request->symptoms_if_any;
         $pat->travel_history = $request->travel_history;
         $pat->country_visited = $request->country_visited;
         $pat->close_contact = $request->close_contact;
         $pat->admit_isolation_ward = $request->admit_isolation_ward;
+
+        $pat->passport = $request->passport;
+        $pat->reference = $request->reference;
+        $pat->remark = $request->remark;
 
         $pat->user_id = Auth::user()->id;
 
@@ -153,6 +166,7 @@ class PatientController extends Controller
         // $pat->lab_id = $request->lab_id;
         $pat->patient_name = $request->patient_name;
         $pat->patient_age = $request->patient_age;
+        $pat->dob = $request->dob;
         $pat->gender = $request->gender;
         $pat->phone = $request->phone;
         $pat->email = $request->email;
@@ -165,7 +179,8 @@ class PatientController extends Controller
         // $pat->e_gene = $request->e_gene;
         // $pat->n_gene = $request->n_gene;
         // $pat->orf_lb = $request->orf_lb;
-        
+        $pat->symptoms = $request->symptoms;
+        $pat->symptoms_if_any = $request->symptoms_if_any;
         $pat->refering_physician = $request->refering_physician;
         $pat->specimen = $request->specimen;
         $pat->specimen_coll_site = $request->specimen_coll_site;
@@ -173,6 +188,11 @@ class PatientController extends Controller
         $pat->specimen_coll_time = $request->specimen_coll_time;
         $pat->reporting_date = $request->reporting_date;
         $pat->reporting_time = $request->reporting_time;
+        $pat->morbidity = $request->morbidity;
+        $pat->passport = $request->passport;
+        $pat->reference = $request->reference;
+        $pat->remark = $request->remark;
+
         $pat->save();
 
         Session::flash('success', 'Succesfully Updated Patient Information.');
@@ -195,26 +215,5 @@ class PatientController extends Controller
         return redirect()->back();
     }
 
-    public function fetch_report_collection(Request $request){
-        // dd($request);
-        $id = $request->cat_id;
-        $parent = Patient::where('id', $id)->first();
-
-        $html = view('report.fetch_report')->with(compact('parent'))->render();
-        return response()->json(['success' => true, 'html' => $html]);
-    }
-
-    public function update_report(Request $request, $id){
-        
-        $pat = Patient::findOrFail($id);
-
-        $pat->result = $request->result;
-        $pat->e_gene = $request->e_gene;
-        $pat->n_gene = $request->n_gene;
-        $pat->orf_lb = $request->orf_lb;
-        $pat->save();
-
-        Session::flash('success', 'Succesfully Updated Patient Information.');
-        return redirect()->route('show_report');
-    }
+    
 }

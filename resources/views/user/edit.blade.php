@@ -31,78 +31,47 @@
                                         <div class="form-horizontal">
 
                                             <div class="row form-group">
-                                                <div class="col-md-3">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Full Name <span class="req_red">*</span></label>
-                                                            <input type="text" name="full_name" value="{{ $user->name }}" class="input-sm" required>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <label>Email <span class="req_red">*</span></label>
-                                                        <input type="text" name="email" class="input-sm" value="{{ $user->email }}" required>
-                                                        </div>
-
-                                                    </div>
+                                                <div class="col-md-2 col-12">
+                                                    <h5>Full Name <span class="req_red">*</span></h5>
+                                                <input type="text" name="full_name" value="{{ $user->name }}" class="input-sm" required>
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <h5>Email <span class="req_red">*</span></h5>
+                                                <input type="text" name="email" class="input-sm" value="{{ $user->email }}" required>
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <h5>Password<span class="req_red">*</span></h5>
+                                                    <input type="password" name="password" class="input-sm">
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <h5>Confirm Password<span class="req_red">*</span></h5>
+                                                    <input type="password" name="password_confirmation" class="input-sm">
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <h5>Gender</h5>
+                                                    <select class="input-md" name="gender">
+                                                        <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>Male</option>
+                                                        <OPTION value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>Female</OPTION>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <h5>User Role <span class="req_red">*</span></h5>
+                                                    <select class="input-md" name="user_role" required>
+                                                        <OPTION value="5" {{ $user->roles()->first()->role == 'Form' ? 'selected' : '' }}>Form User</OPTION>
+                                                        <OPTION value="4" {{ $user->roles()->first()->role == 'Lab' ? 'selected' : '' }}>Lab User</OPTION>
+                                                        <option value="3" {{ $user->roles()->first()->role == 'User' ? 'selected' : '' }}>Normal User</option>
+                                                        <OPTION value="2" {{ $user->roles()->first()->role == 'Admin' ? 'selected' : '' }}>Admin</OPTION>
+                                                    </select>
                                                 </div>
 
-                                                <div class="col-md-3">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Password<span class="req_red">*</span></label>
-                                                            <input type="password" name="password" class="input-sm" required>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <label>Confirm Password<span class="req_red">*</span></label>
-                                                        <input type="password" name="password_confirmation" class="input-sm" required>
-                                                        </div>
-                                                        
-
-                                                    </div>
+                                                <div class="col-md-2 col-12">
+                                                    <h5>Suspend </h5>
+                                                    <select class="input-md" name="suspend">
+                                                        <OPTION value="1" {{ $user->suspend == 1 ? 'selected' : '' }}>Yes</OPTION>
+                                                        <OPTION value="0" {{ $user->suspend == 0 ? 'selected' : '' }}>No</OPTION>
+                                                    </select>
                                                 </div>
-
-                                                {{-- <div class="col-md-2">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Mobile No.<span class="req_red">*</span></label>
-                                                            <input type="text" name="phone" class="input-sm" title="Mobile should be 10 Digits" pattern="[1-9]{1}[0-9]{9}">
-                                                        </div>
-
-                                                        
-
-                                                    </div>
-                                                </div> --}}
-
-                                                <div class="col-md-6">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>Mobile No.<span class="req_red">*</span></label>
-                                                        <input type="text" name="phone" class="input-sm" title="Mobile should be 10 Digits" pattern="[1-9]{1}[0-9]{9}" value="{{ $user->phone }}">
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <label>Gender</label> <br>
-                                                            <select class="input-sm" name="gender">
-                                                                <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>Male</option>
-                                                                <OPTION value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>Female</OPTION>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <label>User Role <span class="req_red">*</span></label>
-                                                            
-                                                            <select class="input-sm" name="user_role" required>
-                                                                <option value="3" {{ $user->roles()->first()->role == 'User' ? 'selected' : '' }}>User</option>
-                                                                <OPTION value="2" {{ $user->roles()->first()->role == 'Admin' ? 'selected' : '' }}>Admin</OPTION>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
                                             </div>
-
                                         
                                             <div class="row pb-4">
                                                 <div class="col-md-10 col-12">

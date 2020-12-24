@@ -33,7 +33,7 @@
                                 COVID-19 Patient Information Table
                             </div>
                             <div>
-                <table id="dynamic-table" class="table table-bordered table-striped">
+                <table id="dynamic-table" class="table table-bordered table-striped ">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -42,7 +42,7 @@
                             <th>Age</th>
                             <th>Gender</th>
                             <th>Phone</th>
-                            <th>Covid-19 Result</th>
+                            <th>Email</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -58,15 +58,7 @@
                             <td>{{ $pat->patient_age }}</td>
                             <td>{{ $pat->gender }}</td>
                             <td>{{ $pat->phone }}</td>
-                            <td><?php if($pat->result == 'N' ):
-                                // echo 'Negative';
-                                echo '<span class="label label-sm label-danger">Negative</span>';
-                            elseif($pat->result == 'P'):
-                                echo '<span class="label label-sm label-success">POSITIVE</span>';
-                            else:
-                                echo '-';
-                            endif;
-                            ?></td>
+                            <td>{{ $pat->email }}</td>
                             <td>
                             {{-- <a href="{{ route('patient.edit', $pat->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a> --}}
 
@@ -74,7 +66,7 @@
 
                                 <form action="{{route('patient.destroy', $pat->id)}}" onclick="event.preventDefault();
                                     var r=confirm('Are you sure you want to delete this item?');
-                                    if(r== true){ this.submit(); }" method="post" style="margin-top: 8px;">
+                                    if(r== true){ this.submit(); }" method="post" style="display:inline-block;">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
                                     {{-- <input type="submit" class="btn btn-danger btn-sm mt-2" value="Delete"> --}}
@@ -219,18 +211,7 @@
 				//initiate dataTables plugin
 				var myTable = 
 				$('#dynamic-table').DataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,
-					  { "bSortable": false }
-					],
-					"aaSorting": [],
-					
-					
-					select: {
-						style: 'multi'
-					}
+					"lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]]
 			    } );
     });
     

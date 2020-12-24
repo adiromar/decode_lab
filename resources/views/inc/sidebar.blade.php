@@ -34,16 +34,18 @@
     </div><!-- /.sidebar-shortcuts -->
 
     <ul class="nav nav-list">
+        
+
+    
+        @if(Auth::user()->roles()->first()->role == 'Admin')
         <li class="active">
-            <a href="{{ url('/admin') }}">
+            <a href="{{ route('dashboard') }}">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> Dashboard </span>
             </a>
 
             <b class="arrow"></b>
         </li>
-
-    
 
         <li class="">
             <a href="#" class="dropdown-toggle">
@@ -107,7 +109,7 @@
             </ul>
         </li>
 
-        @if(Auth::user()->roles()->first()->role == 'Admin')
+        
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-pencil"></i>
@@ -194,6 +196,83 @@
                 <a href="{{ route('user.index') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         View Record
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        @endif
+
+        @if(Auth::user()->roles()->first()->role == 'Lab')
+        <li class="active">
+            <a href="{{ route('dash.lab') }}">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Dashboard </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-envelope"></i>
+                <span class="menu-text"> Report </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="{{ route('report.show.lab') }}">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Update Sample Report
+                        </a>
+    
+                        <b class="arrow"></b>
+                    </li>
+
+                <li class="">
+                <a href="{{ route('report.index.lab') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Print Report
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        @endif
+
+        @if(Auth::user()->roles()->first()->role == 'User')
+        <li class="active">
+            <a href="{{ route('dash.normal') }}">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Dashboard </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-envelope"></i>
+                <span class="menu-text"> Report </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                <a href="{{ route('report.index.user') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Print Report
                     </a>
 
                     <b class="arrow"></b>

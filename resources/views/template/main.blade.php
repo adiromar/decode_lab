@@ -49,12 +49,10 @@
             <div class="ftco-footer-widget ml-md-5 py-5">
               <h2 class="ftco-heading-2">Services</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Spinal Manupulation</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Electrotherapy</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Manual Lympahtic</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Medical Acupuncture</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Therapeutic Exercise</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Joint Mobilization</a></li>
+                <li><a href="{{ url('page/cancer-genetics') }}" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Cancer Genetics</a></li>
+                <li><a href="{{ url('page/infectious-disease') }}" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Infectious Disease</a></li>
+                <li><a href="{{ url('page/molecular-genetics') }}" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Molecular Genetics</a></li>
+                <li><a href="{{ url('page/transplant-infectious-disease') }}" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Transplant Infectious Disease</a></li>
               </ul>
             </div>
           </div>

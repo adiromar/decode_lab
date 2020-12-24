@@ -6,6 +6,22 @@
     <div class="row">
         <h6 style="padding-left: 12px">Unique Lab ID: <span class="unique_lab_id">{{ $parent->lab_id }}</span></h6>
     </div>
+
+    <div class="row">
+        <h5 class="mdl-h5">Test Option</h5>
+        <div class="col-md-3 col-12 col-offset-8">
+            <label>Test Option </label>
+            
+            <select name="test_option" class="form-control">
+                <option value="">--Select--</option>
+                <option value="covid" {{ $parent->test_option == 'covid' ? 'selected' : ''}}>COVID-19</option>
+                <option value="fever" {{ $parent->test_option == 'fever' ? 'selected' : ''}}>Fever</option>
+                <option value="tb" {{ $parent->test_option == 'tb' ? 'selected' : ''}}>TB</option>
+                <option value="hiv" {{ $parent->test_option == 'hiv' ? 'selected' : ''}}>HIV</option>
+            </select>
+        </div>
+    </div>
+
     <div class="row">
         <h5 class="mdl-h5">Personal Details</h5>
         <div class="col-md-4 col-12">
@@ -28,13 +44,16 @@
                     <label for="radio2" class="form-check-label" style="margin-left: 8px;">
                         <input type="radio" id="radio2" name="gender" value="female" class="form-check-input" {{ $parent->gender == 'female' ? 'checked' : '' }}>Female
                     </label>
+                    <label for="radio2" class="form-check-label" style="margin-left: 8px;">
+                        <input type="radio" id="radio22" name="gender" value="other" class="form-check-input" {{ $parent->gender == 'other' ? 'checked' : '' }}>Other
+                    </label>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3 col-12">
             <label>DOB</label>
-        <input type="date" name="dob" value="{{ $parent->dob }}" class="form-control">
+            <input type="date" name="dob" value="{{ $parent->dob }}" class="form-control">
         </div>
     </div>
 
@@ -45,13 +64,13 @@
         <div class="col-md-3 col-12">
             <label>Province</label>
             <select name="province" class="form-control">
-                <option value="1">Province 1</option>
-                <option value="2">Province 2</option>
-                <option value="3">Province 3</option>
-                <option value="4">Province 4</option>
-                <option value="5">Province 5</option>
-                <option value="6">Province 6</option>
-                <option value="7">Province 7</option>
+                <option value="1" {{ $parent->province == '1' ? 'selected' : ''}}>Province 1</option>
+                <option value="2" {{ $parent->province == '2' ? 'selected' : ''}}>Province 2</option>
+                <option value="3" {{ $parent->province == '3' ? 'selected' : ''}}>Province 3</option>
+                <option value="4" {{ $parent->province == '4' ? 'selected' : ''}}>Province 4</option>
+                <option value="5" {{ $parent->province == '5' ? 'selected' : ''}}>Province 5</option>
+                <option value="6" {{ $parent->province == '6' ? 'selected' : ''}}>Province 6</option>
+                <option value="7" {{ $parent->province == '7' ? 'selected' : ''}}>Province 7</option>
             </select>
         </div>
 
@@ -102,10 +121,26 @@
             <label>Mobile <span class="req_red">*</span></label>
             <input type="text" name="phone" value="{{ $parent->phone }}" title="Mobile should be 10 Digits" pattern="[1-9]{1}[0-9]{9}" class="form-control" required>
         </div>
-        <div class="col-md-6 col-12">
+        <div class="col-md-3 col-12">
             <label>Email <span class="req_red">*</span></label>
             <input type="text" name="email" value="{{ $parent->email }}" class="form-control">
         </div>
+        <div class="col-md-3 col-12">
+            <label>Passport No.</label>
+            <input type="text" name="passport" value="{{ $parent->passport }}" class="form-control">
+        </div>
+
+        @if($parent->email_1 || $parent->email_2)
+        <div class="col-md-3 col-12">
+            <label>Email 1</label>
+            <input type="text" name="email_1" value="{{ $parent->email_1 }}" class="form-control">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Email 2</label>
+            <input type="text" name="email_2" value="{{ $parent->email_2 }}" class="form-control">
+        </div>
+        @endif
+
         
     </div>
 
@@ -136,10 +171,10 @@
             <label>Specimen Collection Time</label>
             <input type="datetime-local" name="specimen_coll_time" value="{{ $parent->specimen_coll_time }}" class="form-control">
         </div>
-        <div class="col-md-3 col-12" style="margin-top: 8px;">
+        {{-- <div class="col-md-3 col-12" style="margin-top: 8px;">
             <label>Reporting Time</label>
             <input type="date" name="reporting_time" value="{{ $parent->reporting_time }}" class="form-control">
-        </div>
+        </div> --}}
     </div>
 
     <div class="row" style="padding-top: 12px;">
@@ -167,11 +202,11 @@
 
         <div class="col-md-3 col-12">
             <label>Co Morbidity</label>
-            <input type="text" name="mornidity" value="{{ $parent->morbidity }}" class="form-control">
+            <input type="text" name="morbidity" value="{{ $parent->morbidity }}" class="form-control">
         </div>
         <div class="col-md-2 col-12">
             <label>Temperature (°F)</label>
-            <input type="number" name="temperature" value="{{ $parent->temperature }}" class="form-control">
+            <input type="number" name="temperature" value="{{ $parent->temperature }}" min="96" max="108" step="0.1"  class="form-control">
         </div>
         <div class="col-md-3 col-12">
             <label>Sputum</label>
@@ -184,7 +219,7 @@
         @if($parent->symptoms_if_any)
         <div class="col-md-12 col-12" style="margin: 12px 0;">
             <label>Additional Symptoms (if any)</label>
-            <textarea rows="2" cols="50">{{ $parent->symptoms_if_any }}</textarea>
+            <textarea rows="2" cols="50" name="symptoms_if_any">{{ $parent->symptoms_if_any }}</textarea>
         </div>
         @endif
 
@@ -207,6 +242,7 @@
             </div>
         </div>
 
+        @if($parent->country_visited)
         <div class="col-md-3 col-12">
             <label>Country Visited By You (if yes)</label>
             
@@ -216,10 +252,12 @@
             @endphp
             <select name="country_visited" class="form-control">
             @foreach ($country as $val)
-                <option>{{ $val }}</option>
+                <option value="{{ $parent->country_visited }}" {{ $parent->country_visited == $val ? 'selected' : ''}}>{{ $val }}</option>
             @endforeach
             </select>
         </div>
+        @endif
+        
     </div>
 
     <div class="row" style="padding-top: 12px;">
@@ -252,6 +290,25 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="row" style="padding-top: 12px;">
+        <h5 class="mdl-h5">Other Info</h5>
+
+        <div class="col-md-3 col-12">
+            <label>Reference</label>
+            <input type="text" name="reference" value="{{ $parent->reference }}">
+        </div>
+
+        <div class="col-md-3 col-12">
+            <label>Remark</label>
+            <input type="text" name="remark" value="{{ $parent->remark }}">
+        </div>
+        <div class="col-md-3 col-12">
+            <label>Referred By</label>
+            <input type="text" name="refering_physician" value="{{ $parent->refering_physician }}">
+        </div>
+
     </div>
 
     <div class="row" style="padding: 12px 0 0 12px;">

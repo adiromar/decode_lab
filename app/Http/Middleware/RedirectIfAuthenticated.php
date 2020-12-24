@@ -27,6 +27,9 @@ class RedirectIfAuthenticated
                 break;
             case 'User':
                 return redirect('/admin');
+                break;
+            case 'Lab':
+                return redirect('/lab');
                 break; 
 
             default:

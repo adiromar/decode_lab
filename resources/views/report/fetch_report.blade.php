@@ -1,6 +1,7 @@
 
     <form action="{{ route('update_report', $parent->id) }}" method="post" enctype="multipart/form-data" style="padding-bottom: 15px;">
         {{ csrf_field() }}
+        {{ method_field('PATCH')}}
         
         <div class="row">
             <h6 style="padding-left: 12px">Unique Lab ID: <span class="unique_lab_id">{{ $parent->lab_id }}</span></h6>

@@ -17,7 +17,7 @@
             <!-- Widgets  -->
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
-
+                    
                     <div class="center">
                         <span class="btn btn-app btn-sm btn-light no-hover">
                             <span class="line-height-1 bigger-170 blue"> {{ $tot }} </span>

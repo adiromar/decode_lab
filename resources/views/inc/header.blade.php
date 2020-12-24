@@ -27,46 +27,18 @@
                 
 
                 <li class="green dropdown-modal">
+                    <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+							document.getElementById('logout-form').submit();">
+                            <i class="fa fa-sign-out"></i> Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{csrf_field()}}
+                            </form>
+
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
                         <span class="badge badge-success">5</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="{{ asset('adm/assets/images/avatars/avatar.png') }}" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-                                            <span class="msg-title">
-                                                <span class="blue">Alex:</span>
-                                                Ciao sociis natoque penatibus et auctor ...
-                                            </span>
-
-                                            <span class="msg-time">
-                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                <span>a moment ago</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                See all messages
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="light-blue dropdown-modal">
@@ -82,16 +54,9 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="{{ url('/') }}">
                                 <i class="ace-icon fa fa-cog"></i>
-                                Settings
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="ace-icon fa fa-user"></i>
-                                Profile
+                                Homepage
                             </a>
                         </li>
 
@@ -104,7 +69,7 @@
                             </a> --}}
                             <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
 							document.getElementById('logout-form').submit();">
-                            <i class="fa fa-power-off"></i>Logout</a>
+                            <i class="fa fa-power-off"></i> Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{csrf_field()}}
                             </form>

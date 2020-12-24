@@ -453,7 +453,7 @@
               
                 <div class="blog-entry align-self-stretch padd-inside">
                   <div class="image-div">
-                  <a href="blog-single.html" class="block-20-new rounded" style="background-image: url('{{ asset('uploads/blog/thumbnails/'.$item->image) }}');">
+                  <a href="{{ route('news', $item->slug) }}" class="block-20-new rounded" style="background-image: url('{{ asset('uploads/blog/thumbnails/'.$item->image) }}');">
                   </a>
                     <p class="categories">{{ $item->subtitle }}</p>
                   </div>
