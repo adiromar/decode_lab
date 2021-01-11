@@ -24,7 +24,7 @@
 
     <div class="row">
         <h5 class="mdl-h5">Personal Details</h5>
-        <div class="col-md-4 col-12">
+        <div class="col-md-3 col-12">
             <label>Patient's Name <span class="req_red">*</span></label>
             <input type="text" name="patient_name" value="{{ $parent->patient_name }}" class="form-control">
         </div>
@@ -32,6 +32,15 @@
         <div class="col-md-2 col-12">
             <label>Patient's Age</label>
             <input type="number" name="patient_age" min="1" max="115" value="{{ $parent->patient_age }}" class="form-control">
+        </div>
+
+        <div class="col-md-2 col-12">
+            <label>Year/Month</label>
+            <select name="year_or_month" class="form-control">
+                <option value="Y">Year</option>
+                <option value="M">Month</option>
+                <option value="D">Days</option>
+            </select>
         </div>
 
         <div class="col-md-3 col-12">
@@ -51,7 +60,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-2 col-12">
             <label>DOB</label>
             <input type="date" name="dob" value="{{ $parent->dob }}" class="form-control">
         </div>
@@ -130,6 +139,19 @@
             <input type="text" name="passport" value="{{ $parent->passport }}" class="form-control">
         </div>
 
+        <div class="col-md-12 col-12">
+            <a href="#" id="add_email">+ Additional E-mail</a>
+        </div>
+
+        <div class="col-md-3 col-12" style="display: none;" id="show-email-1">
+            <label>Email 1</label>
+            <input type="text" name="email_1" class="form-control">
+        </div>
+        <div class="col-md-3 col-12" style="display: none;" id="show-email-2">
+            <label>Email 2</label>
+            <input type="text" name="email_2" class="form-control">
+        </div>
+
         @if($parent->email_1 || $parent->email_2)
         <div class="col-md-3 col-12">
             <label>Email 1</label>
@@ -147,10 +169,10 @@
     <div class="row" style="padding-top: 12px;">
         <h5 class="mdl-h5">Specimen Details</h5>
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-4 col-12">
             <label>Specimen</label>
             <select name="specimen" class="form-control">
-                <option value="Nasopharyngeal" {{ $parent->specimen == 'Nasopharyngeal' ? 'selected' : '' }}>Nasopharyngeal</option>
+                <option value="Naso / Oropharyngeal" {{ $parent->specimen == 'Naso / Oropharyngeal' ? 'selected' : '' }}>Naso / Oropharyngeal</option>
                 <option value="Oropharyngeal" {{ $parent->specimen == 'Oropharyngeal' ? 'selected' : '' }}>Oropharyngeal (Throat)</option>
                 <option value="Sputum" {{ $parent->specimen == 'Sputum' ? 'selected' : '' }}>Sputum</option>
                 <option value="Endotracheal Aspirate" {{ $parent->specimen == 'Endotracheal Aspirate' ? 'selected' : '' }}>Endotracheal Aspirate</option>
@@ -159,16 +181,16 @@
             </select>
         </div>
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-4 col-12">
             <label>Specimen Collection Site</label>
             <input type="text" name="specimen_coll_site" value="{{ $parent->specimen_coll_site }}" class="form-control">
         </div>
-        <div class="col-md-3 col-12">
+        {{-- <div class="col-md-3 col-12">
             <label>Specimen Collection Date</label>
             <input type="date" name="specimen_coll_date" value="{{ $parent->specimen_coll_date }}" class="form-control">
-        </div>
-        <div class="col-md-3 col-12">
-            <label>Specimen Collection Time</label>
+        </div> --}}
+        <div class="col-md-4 col-12">
+            <label>Specimen Collection Date & Time</label>
             <input type="datetime-local" name="specimen_coll_time" value="{{ $parent->specimen_coll_time }}" class="form-control">
         </div>
         {{-- <div class="col-md-3 col-12" style="margin-top: 8px;">
@@ -256,6 +278,7 @@
             @endforeach
             </select>
         </div>
+        
         @endif
         
     </div>
@@ -318,5 +341,31 @@
 
 
     </form>
+
+    {{-- <script src="{{ asset('adm/assets/js/jquery-2.1.4.min.js') }}"></script> --}}
+    <script>
+        $(document).ready(function(){
+            $('#add_email').click(function(e) {
+            e.preventDefault();
+                $('#show-email-1').fadeIn(" slow ");
+                $('#show-email-2').fadeIn(" slow ");
+
+            });
+
+            $('input:radio[name="travel_history"]').change(function(){
+                if($(this).val() == 1){
+                    $('.country-div').fadeIn(" slow ");
+                }else{
+                    $('.country-div').fadeOut(" slow ");
+                }
+            });
+            
+            $("#patient_form").submit(function () {
+                $(".submit_btn").attr("disabled", true);
+                return true;
+            });
+
+        });
+       </script>
 
 

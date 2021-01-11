@@ -4,6 +4,28 @@
 <!-- END nav -->
 <div class="hero-wrap">
     <div class="home-slider owl-carousel">
+<?php $sliders = App\Sliders::where('status', 1)->take(8)->get(); ?>
+@if(count($sliders) > 0)
+@foreach ($sliders as $slide)
+    
+
+      <div class="slider-item" style="background-image:url({{ asset('uploads/sliders/'.$slide->image.'') }});">
+        <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-end">
+            <div class="col-md-6 ftco-animate">
+                <div class="text w-100">
+                  {{-- <h1 class="mb-4">Chiropractic care for the whole family</h1>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                  <p><a href="#" class="btn btn-primary">Book an appointment</a></p> --}}
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    @endforeach
+    @else
 
       <div class="slider-item" style="background-image:url({{ asset('front/slider/a.jpg') }});">
           <div class="overlay"></div>
@@ -79,6 +101,7 @@
             </div>
         </div>
       </div>
+      @endif
       
     </div>
   </div>

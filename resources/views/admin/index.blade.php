@@ -3,7 +3,9 @@
 
 @php
     $tot = App\Patient::count();
-    $rep_sub = App\Patient::where('result', 'N')->orWhere('result', 'P')->count();
+    $rep_sub = App\Patient::whereNotNull('result')->count();
+    $mail = DB::table('sent_mail_details')->sum('sent_mail_details.mail_sent');
+    $sms = DB::table('sent_sms_details')->sum('sent_sms_details.sms_sent');
 @endphp
         <style>
             .btn.btn-app.btn-sm{
@@ -34,14 +36,14 @@
                         </span>
 
                         <span class="btn btn-app btn-sm btn-pink no-hover">
-                            <span class="line-height-1 bigger-170"> 0 </span>
+                            <span class="line-height-1 bigger-170"> {{ $sms }} </span>
 
                             <br>
                             <span class="line-height-1 smaller-90"> Message Sent </span>
                         </span>
 
                         <span class="btn btn-app btn-sm btn-grey no-hover">
-                            <span class="line-height-1 bigger-170"> 0 </span>
+                            <span class="line-height-1 bigger-170"> {{ $mail }}</span>
 
                             <br>
                             <span class="line-height-1 smaller-90"> Email Sent </span>

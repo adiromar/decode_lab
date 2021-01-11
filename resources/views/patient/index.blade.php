@@ -43,6 +43,7 @@
                             <th>Gender</th>
                             <th>Phone</th>
                             <th>Email</th>
+                            <th>Insert Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -55,10 +56,11 @@
                             <td>{{ $k }}</td>
                             <td>{{ $pat->lab_id }}</td>
                             <td>{{ $pat->patient_name }}</td>
-                            <td>{{ $pat->patient_age }}</td>
+                            <td>{{ $pat->patient_age . ' ' .$pat->year_or_month}}</td>
                             <td>{{ $pat->gender }}</td>
                             <td>{{ $pat->phone }}</td>
                             <td>{{ $pat->email }}</td>
+                            <td>{{ date('Y-m-d', strtotime($pat->created_at)) }}</td>
                             <td>
                             {{-- <a href="{{ route('patient.edit', $pat->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a> --}}
 

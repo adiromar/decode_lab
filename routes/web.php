@@ -59,14 +59,16 @@ function(){
     Route::post('fetch/sample_coll', 'AdminController@fetch_sample_collection')->name('fetch_sample');
     Route::post('fetch/report_coll', 'ReportController@fetch_report_collection')->name('fetch_report');
 
-    Route::post('updateSample/{id}/report', 'ReportController@update_report')->name('update_report');
+    
     Route::get('show/report', 'ReportController@show_report')->name('show_report');
 
     Route::post('send/bulk-email', 'ReportController@send_bulk_email')->name('bulk_email');
     Route::post('send/bulk-sms', 'ReportController@send_bulk_sms')->name('bulk_sms');
+
+    Route::resource('sliders', 'SliderController');
 });
 
-
+Route::post('updateSample/{id}/report', 'ReportController@update_report')->name('update_report');
 
 Route::group([
     'prefix' => 'normal',
@@ -76,10 +78,10 @@ function(){
     Route::get('/dash', 'AdminController@index')->name('dash.normal');
     // Route::get('/', 'HomeController@test')->name('test');
     Route::get('/', 'ReportController@index')->name('report.index.user'); 
-    Route::get('/printPdf/{id}', 'ReportController@printPdf')->name('print_pdf'); 
-    Route::get('/downloadPdf/{id}', 'ReportController@downloadPdf')->name('down_pdf');
-    Route::get('/send-email/{id}', 'ReportController@send_mail_pdf')->name('mail_pdf');
-    Route::post('/send-sms', 'ReportController@send_sms')->name('sms_report');
+    Route::get('/printPdf/{id}', 'ReportController@printPdf')->name('print_pdf_normal'); 
+    Route::get('/downloadPdf/{id}', 'ReportController@downloadPdf')->name('down_pdf_normal');
+    Route::get('/send-email/{id}', 'ReportController@send_mail_pdf')->name('mail_pdf_normal');
+    Route::post('/send-sms', 'ReportController@send_sms')->name('sms_report_normal');
 });
 
 // lab
@@ -94,5 +96,22 @@ function(){
     // Route::get('/show/report', 'ReportController@show_report');
 });
 
+// lab
+Route::group([
+    'prefix' => 'guest',
+    'middleware' => '',
+],
+function(){
+    Route::get('/', 'FrontController@show_guest_report')->name('guest.report');
+    
+    // Route::get('/', 'ReportController@show_report')->name('report.show.lab');
+    // Route::get('/home', 'ReportController@index')->name('report.index.lab');
+    // Route::get('/show/report', 'ReportController@show_report');
+});
 
+Route::get('/login-guest', 'FrontController@login_guest')->name('guest.login');
+Route::post('/check-login-guest', 'FrontController@check_guest_login')->name('guest.login.check');
+Route::get('guest/downloadPdf/{id}', 'FrontController@downloadPdf')->name('down_pdf_guest');
+
+Route::get('guest/userReport/{lab_id}/{lab_pw}', 'FrontController@download_link_page')->name('guest-getpdf');
 // Auth::routes();

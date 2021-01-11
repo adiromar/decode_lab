@@ -221,7 +221,7 @@
         var e_gene = $(this).parent().find('.e_gene').val();
         // n_gene = $(this).siblings('.n_gene:first').val();
         // orf_lab = $(this).siblings('.orf_lab:first').val();
-        alert(e_gene);
+        // alert(e_gene);
         console.log(e_gene);
 
         $.ajaxSetup({
@@ -278,7 +278,7 @@
             $.ajax({
                     type: 'POST',
                     
-                    url: 'http://localhost:8000/admin/updateSample/'+cat_id+'/report',
+                    url: 'http://localhost:8000/updateSample/'+cat_id+'/report',
                     data: {
                         cat_id,
                         res,

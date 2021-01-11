@@ -19,6 +19,7 @@
 
 		<link rel="stylesheet" href="{{ asset('adm/assets/css/jquery-ui.custom.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('adm/assets/css/chosen.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('adm/assets/css/jquery.gritter.min.css') }}" />
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="{{ asset('adm/assets/css/fonts.googleapis.com.css') }}" />
@@ -188,6 +189,7 @@
 		<script src="{{ asset('adm/assets/js/jquery.flot.min.js') }}"></script>
 		<script src="{{ asset('adm/assets/js/jquery.flot.pie.min.js') }}"></script>
 		<script src="{{ asset('adm/assets/js/jquery.flot.resize.min.js') }}"></script> 
+		<script src="{{ asset('adm/assets/js/jquery.gritter.min.js') }}"></script>
 
 		<script src="{{ asset('adm/assets/js/markdown.min.js') }}"></script>
         <script src="{{ asset('adm/assets/js/bootstrap-markdown.min.js') }}"></script>
@@ -200,6 +202,8 @@
 		<script src="{{ asset('adm/assets/js/ace-elements.min.js') }}"></script>
 		<script src="{{ asset('adm/assets/js/ace.min.js') }}"></script>
 
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			$('#chosen-multiple-style .btn').on('click', function(e){
@@ -211,6 +215,38 @@
 		</script>
 
 <script>
+
+@if( Session::has('success') )
+
+Swal.fire({
+	text: '{{ Session::get("success") }}',
+	icon: 'success',
+	confirmButtonText: 'Ok'
+})
+
+@endif
+
+@if( Session::has('info') )
+
+Swal.fire({
+	text: '{{ Session::get("info") }}',
+	icon: 'info',
+	confirmButtonText: 'Ok'
+})
+
+@endif
+
+@if( Session::has('error') )
+
+Swal.fire({
+	text: '{{ Session::get("error") }}',
+	icon: 'error',
+	confirmButtonText: 'Ok'
+})
+
+@endif
+
+
 	jQuery(function($){
 
 		$('textarea[data-provide="markdown"]').each(function(){

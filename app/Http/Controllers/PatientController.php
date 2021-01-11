@@ -8,6 +8,7 @@ use Session;
 use Image;
 use Auth;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Str;
 
 class PatientController extends Controller
 {
@@ -62,7 +63,7 @@ class PatientController extends Controller
             'table' => 'patients',
             'field' => 'lab_id',
             'length' => 10,
-            'prefix' => 'DG-A'
+            'prefix' => 'DGA-'
         ];
         
         // now use it
@@ -74,9 +75,12 @@ class PatientController extends Controller
         $pat = new Patient;
 
         $pat->lab_id = ( string ) $lab_id;
+        // $pat->lab_id = $lab_id;
+        $pat->lab_pw = Str::random(6);
         $pat->test_option = $request->test_option;
         $pat->patient_name = $request->patient_name;
         $pat->patient_age = $request->patient_age;
+        $pat->year_or_month = $request->year_or_month;
         $pat->gender = $request->gender;
         $pat->phone = $request->phone;
         $pat->dob = $request->dob;
@@ -166,6 +170,7 @@ class PatientController extends Controller
         // $pat->lab_id = $request->lab_id;
         $pat->patient_name = $request->patient_name;
         $pat->patient_age = $request->patient_age;
+        $pat->year_or_month = $request->year_or_month;
         $pat->dob = $request->dob;
         $pat->gender = $request->gender;
         $pat->phone = $request->phone;
@@ -174,11 +179,7 @@ class PatientController extends Controller
         $pat->district = $request->district;
         $pat->municipality = $request->municipality;
         $pat->ward = $request->ward;
-        
-        // $pat->result = $request->result;
-        // $pat->e_gene = $request->e_gene;
-        // $pat->n_gene = $request->n_gene;
-        // $pat->orf_lb = $request->orf_lb;
+       
         $pat->symptoms = $request->symptoms;
         $pat->symptoms_if_any = $request->symptoms_if_any;
         $pat->refering_physician = $request->refering_physician;

@@ -51,11 +51,11 @@
                         // dd($patient);
                         @endphp
                         @foreach ($patient as $pat)
-                        <?php 
-                        $mail = DB::table('sent_mail_details')->where('patient_id', $pat->id)->first();
-                        if($mail != null){
-                            $mail_count = $mail->mail_count;
-                        }
+                        <?php $sms_count=$mail_count=0;
+                        $mail_count = DB::table('sent_mail_details')->where('lab_id', $pat->lab_id)->sum('sent_mail_details.mail_sent');
+                        // $mail = DB::table('sent_mail_details')->where('lab_id', $pat->lab_id)->first();
+                        $sms_count = DB::table('sent_sms_details')->where('lab_id', $pat->lab_id)->sum('sent_sms_details.sms_sent');
+
                          ?>
                         
                         <tr>
@@ -81,19 +81,29 @@
                             endif;
                             ?></td>
 
-                            @if($mail != null)
-                                <td>{{ $mail_count }}</td>
-                            @else
-                                <td>0</td>
-                            @endif
+                            
+                            <td>{{ $mail_count . '/' .$sms_count }}</td>
                             <td>{{ date("Y-m-d",strtotime($pat->created_at)) }}</td>
                             <td>{{ $pat->reporting_date }}</td>
                             <td>
-                                <a href="{{ route('print_pdf', $pat->id) }}" target="_blank" class="btn btn-success btn-sm">Print PDF</a>
-                                <a href="{{ route('down_pdf', $pat->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> PDF</a>
-                                <a href="{{ route('mail_pdf', $pat->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-envelope"></i> E-mail</a>
+                                <?php
+                                if(Auth::user()->roles()->first()->role == 'Admin'):
+                                    $print_pdf = 'print_pdf';
+                                    $down_pdf = 'down_pdf';
+                                    $mail_pdf = 'mail_pdf';
+                                    $sms_report = 'sms_report';
+                                elseif(Auth::user()->roles()->first()->role == 'Normal'):
+                                    $print_pdf = 'print_pdf_normal';
+                                    $down_pdf = 'down_pdf_normal';
+                                    $mail_pdf = 'mail_pdf_normal';
+                                    $sms_report = 'sms_report_normal';
+                                endif;
+                                ?>
+                                <a href="{{ route($print_pdf, $pat->id) }}" target="_blank" class="btn btn-success btn-sm">Print PDF</a>
+                                <a href="{{ route($down_pdf, $pat->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> PDF</a>
+                                <a href="{{ route($mail_pdf, $pat->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-envelope"></i> E-mail</a>
                                 
-                                <form action="{{ route('sms_report') }}" method="post" class="" style="display: inline;">
+                                <form action="{{ route($sms_report) }}" method="post" class="" style="display: inline;">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{ $pat->id }}">
                                     <input type="hidden" name="unique_lab_id" value="{{ $pat->lab_id }}">

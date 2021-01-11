@@ -101,6 +101,7 @@ class ReportController extends Controller
         return response()->json(['success' => true, 'html' => $html]);
     }
 
+
     public function update_report(Request $request, $id){
         // echo $id;
         // dd($request);
@@ -196,6 +197,12 @@ class ReportController extends Controller
            $this->statusdesc  =   "Message sent Succesfully";
            $this->statuscode  =   "1";
 
+           DB::table('sent_mail_details')->insert([
+            'patient_id' => $data['patient']->id,
+            'lab_id' => $data['patient']->lab_id,
+            'mail_sent' => 1
+            ]);
+
            Session::flash('success', 'Succesfully Sent E-Mail to ' .$data["client_name"]);
         }
         // return response()->json(compact('this'));
@@ -233,7 +240,8 @@ class ReportController extends Controller
                 $token = 'rMZJTb9JDIZRBtia52090mo5lmelNhGRb3P';
                 $to = $contact;
                 $sender    = 'DecodeLab';
-                $message = 'COVID-19 PCR Test Report of '.$name.' '.$age_gender.' with Lab ID '.$lab_id.' is '.$result.' \n Decode Lab, Sinamangal \n 01-4116637 (7am to 7pm)';
+                // $message = 'COVID-19 PCR Test Report of '.$name.' '.$age_gender.' with Lab ID '.$lab_id.' is '.$result.' '.PHP_EOL.' Weblink: http://encoderslab.com/decode_new/guest/userReport/'.$rec->lab_id.'/'.$rec->lab_pw.' '.PHP_EOL.' Username : '.$rec->lab_id.' '.PHP_EOL.' Password: '.$rec->lab_pw.' '.PHP_EOL.' Decode Lab, Sinamangal '.PHP_EOL.' 01-4116637 (7am to 7pm)';
+                $message = 'COVID-19 PCR Test Report of '.$name.' '.$age_gender.' with Lab ID '.$lab_id.' is '.$result.' '.PHP_EOL.' Weblink: http://encoderslab.com/decode_new/guest/userReport/'.$rec->lab_id.'/'.$rec->lab_pw.' '.PHP_EOL.' Decode Lab, Sinamangal '.PHP_EOL.' 01-4116637 (7am to 7pm)';
                 
                 // set post fields
                 $content =[

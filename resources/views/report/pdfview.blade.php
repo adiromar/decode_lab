@@ -8,7 +8,8 @@
 <style>
 
     * {
-     font-family: "DejaVu Sans";
+     /* font-family: "DejaVu Sans"; */
+     font-family: "Times New Roman";
      font-size: 12px;
     }
     /* {
@@ -41,81 +42,75 @@
     }
 </style>
 
-<table class="d-tbl" width="" >
+<table class="d-tbl" width="100%" style="border: 1px solid rgb(204, 55, 55);padding: 8px">
     <tr>
-        <th width="150">Sample ID</th>
-        <td width="150">{{ $patient->lab_id }}</td>
-        <td width="150"></td>
+        <th width="25%">Sample ID:</th>
+        <td width="25%">{{ $patient->lab_id }}</td>
+        
 
-        <th width="150">Specimen</th>
-        <td width="150"><?= $patient->specimen?></td>
-        <td width="150"></td>
+        <th width="25%">Specimen:</th>
+        <td width="25%"><?= $patient->specimen?></td>
+        
     </tr>
     <tr>
-        <th width="150">Patient's Name</th>
-        <td width="150">{{ ucwords($patient->patient_name) }}</td>
-        <td width="150"></td>
+        <th width="25%">Patient's Name:</th>
+        <td width="25%">{{ ucwords($patient->patient_name) }}</td>
+        
 
-        <th width="150">Specimen Collection Site</th>
-        <td width="150"><?= $patient->specimen_coll_site?></td>
-        <td width="150"></td>
+        <th width="25%">Specimen Collection Site:</th>
+        <td width="25%"><?= $patient->specimen_coll_site?></td>
+
     </tr>
     @php
-        $address = $patient->district . ' - ' . $patient->ward;
+        $address = ucfirst($patient->district) . ' - ' . $patient->ward;
     @endphp
     <tr>
-        <th width="150">Address</th>
-        <td width="150"><?= $address?></td>
-        <td width="150"></td>
+        <th width="25%">Address:</th>
+        <td width="25%"><?= $address?></td>
 
-        <th width="150">Specimen Collection Date</th>
-        <td width="150"><?= $patient->specimen_coll_date?></td>
-        <td width="150"></td>
+        <th width="35%">Specimen Collection Date & Time:</th>
+        <td width="25%"><?= $patient->specimen_coll_time?></td>
+        
     </tr>
 
     <tr>
-        <th width="150">Age/Gender</th>
-        <td width="150">{{ $patient->patient_age . ' / '. ucfirst($patient->gender) }}</td>
-        <td width="150"></td>
-
-        <th width="150">Specimen Collection Time</th>
-        <td width="150"><?= $patient->specimen_coll_time?></td>
-        <td width="150"></td>
+        <th width="25%">Age/Gender:</th>
+        <td width="25%">{{ $patient->patient_age . ' / '. ucfirst($patient->gender) }}</td>
+        
+        <th width="25%">Reporting Date & Time:</th>
+        <td width="25%">{{ $patient->reporting_time }}</td>
     </tr>
 
     <tr>
-        <th width="150">Phone</th>
-        <td width="150">{{ $patient->phone }}</td>
-        <td width="150"></td>
+        <th width="25%">Phone:</th>
+        <td width="25%">{{ $patient->phone }}</td>
 
-        <th width="150">Reporting Date</th>
-        <td width="150"><?= $patient->reporting_date?></td>
-        <td width="150"></td>
+        <th width="25%">Referring Physician:</th>
+        <td width="25%"><?= $patient->refering_physician?></td>
     </tr>
 
     <tr>
-        <th width="150">Email</th>
-        <td width="150"><?= $patient->email?></td>
-        <td width="150"></td>
-
-        <th width="150">Reporting Time</th>
-        <td width="150"><?= $patient->reporting_time?></td>
-        <td width="150"></td>
+        
+        <th width="25%">DOB:</th>
+        <td width="25%">{{ $patient->dob }}</td>
+       
     </tr>
 
     <tr>
-        <th width="150">Passport No.</th>
-        <td width="150">-</td>
-        <td width="150"></td>
+        <th width="25%">Passport No.:</th>
+        <td width="25%">{{ $patient->passport }}</td>
 
-        <th width="150">Referring Physician</th>
-        <td width="150"><?= $patient->refering_physician?></td>
-        <td width="150"></td>
+
+        
+    </tr>
+    <tr>
+        <th width="25%">Email:</th>
+        <td width="25%"><?= $patient->email?></td>
     </tr>
     
 </table>
 
-<table class="d-tbl" width="100%" style="margin-top: 50px;">
+<table class="d-tbl" width="100%" style="margin-top: 50px;border: 1px solid rgb(204, 55, 55);padding: 8px">
     <tr>
         <th width="50%" class="border-line">Investigation</th>
         <th width="50%" class="border-line">Value (CT.)</th>
@@ -126,15 +121,27 @@
     </tr>
     <tr>
         <td width="50%">E-GENE</td>
+        @if($patient->e_gene)
         <td width="50%">{{ $patient->e_gene}}</td>
+        @else
+        <td width="50%">-</td>
+        @endif
     </tr>
     <tr>
         <td width="50%">N-GENE</td>
+        @if($patient->n_gene)
         <td width="50%">{{ $patient->n_gene}}</td>
+        @else
+        <td width="50%">-</td>
+        @endif
     </tr>
     <tr>
         <td width="50%">ORF-lab</td>
+        @if($patient->orf_lb)
         <td width="50%">{{ $patient->orf_lb}}</td>
+        @else
+        <td width="50%">-</td>
+        @endif
     </tr>
     <tr>
         <?php 
@@ -151,8 +158,8 @@
     </tr>
 </table>
 
-<h4>Essay Description</h4>
-<p style="font-size: 12px">This Essay has been performed for qualitative detection of the ORF-1ab and N genes of SARS-CoV-2 RNA using CE IVD/USFDA kits.  Internal control targeting the RNase P gene has been used to monitor the sample collection, sample handling and RT- PCR process to avoid false-negative results. The LoD of the kit is 200 copies/µl.						
+<h4>Assay Description</h4>
+<p style="font-size: 12px">This Assay has been performed for qualitative detection of the ORF-1ab and N genes of SARS-CoV-2 RNA using CE IVD/USFDA kits.  Internal control targeting the RNase P gene has been used to monitor the sample collection, sample handling and RT- PCR process to avoid false-negative results. The LoD of the kit is 200 copies/µl.						
 </p>
 <p style="font-size: 12px">Negative Result does not rule out the possibility of COVID-19 infection. Clinical symptoms and other laboratory findings should be considered before making final decision. 						
 </p>
@@ -172,7 +179,7 @@
         
             
          </td>
-         <td><img src="{{ realpath('pdf_assets/niru.png') }}" width="50%"></td>
+         <td style="float-left;text-align: left;"><img src="{{ realpath('pdf_assets/niru.png') }}" width="50%"></td>
          <td></td>
          
      </tr>
@@ -186,7 +193,7 @@
             </ul>
          </td>
          <td><img src="{{ realpath('pdf_assets/sunil.png') }}" width="50%"></td>
-         <td><img src="{{ realpath('pdf_assets/stamp.png') }}" width="50%"></td>
+         {{-- <td><img src="{{ realpath('pdf_assets/stamp1.png') }}" width="50%"></td> --}}
          
      </tr>
  </table>

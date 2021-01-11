@@ -20,7 +20,7 @@ class Lab
             if ( $role != 'Lab') {
 
                 // Session::flash('error', 'Not Authorized with this User Role !!');
-                return redirect('/lab');
+                return redirect('/');
         }
         return $next($request);
     }

@@ -23,8 +23,10 @@
                                 </div>
                                 <div class="widget-body">
                                     <div class="widget-main">
+
+                                        @include('errors.errors')
                                         
-    <form action="{{ route('patient.store') }}" method="post" enctype="multipart/form-data" style="padding-bottom: 15px;">
+    <form action="{{ route('patient.store') }}" method="post" enctype="multipart/form-data" id="patient_form" style="padding-bottom: 15px;">
         {{ csrf_field() }}
         
     <div class="row">
@@ -52,7 +54,16 @@
 
         <div class="col-md-2 col-12">
             <label>Patient's Age</label>
-            <input type="number" name="patient_age" min="1" max="115"  class="form-control">
+            <input type="number" name="patient_age" min="1" max="115"  class="form-control" required>
+        </div>
+
+        <div class="col-md-1 col-12">
+            <label>Year/Month</label>
+            <select name="year_or_month" class="form-control">
+                <option value="Y">Year</option>
+                <option value="M">Month</option>
+                <option value="D">Days</option>
+            </select>
         </div>
 
         <div class="col-md-3 col-12">
@@ -72,7 +83,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-2 col-12">
             <label>DOB</label>
         <input type="date" name="dob" class="form-control">
         </div>
@@ -116,16 +127,10 @@
         <div class="col-md-3 col-12">
             <label>Ward</label>
             <select name="ward" class="form-control">
-                <option value="1" >1</option>
-                <option value="2" >2</option>
-                <option value="3" >3</option>
-                <option value="4" >4</option>
-                <option value="5" >5</option>
-                <option value="6" >6</option>
-                <option value="7" >7</option>
-                <option value="8" >8</option>
-                <option value="9" >9</option>
-                <option value="10" >10</option>
+                    <option value="">Select Ward</option>
+                @for ($i = 1; $i <= 35; $i++)
+                    <option value="{{ $i }}" >{{ $i }}</option>
+                @endfor
             </select>
         </div>
     </div>
@@ -143,7 +148,7 @@
             <input type="text" name="phone" title="Mobile should be 10 Digits" pattern="[1-9]{1}[0-9]{9}" class="form-control" placeholder="Phone No." required>
         </div>
         <div class="col-md-3 col-12">
-            <label>Email <span class="req_red">*</span></label>
+            <label>Email </label>
             <input type="text" name="email" placeholder="E-mail" class="form-control">
         </div>
         <div class="col-md-3 col-12">
@@ -169,10 +174,11 @@
     <div class="row" style="padding-top: 12px;">
         <h5 class="mdl-h5">Specimen Details</h5>
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-4 col-12">
             <label>Specimen</label>
             <select name="specimen" class="form-control">
-                <option value="Nasopharyngeal" >Naso / Opharyngeal</option>
+                <option value="">---Select Specimen---</option>
+                <option value="Naso / Oropharyngeal" >Naso / Oropharyngeal</option>
                 <option value="Oropharyngeal" >Oropharyngeal (Throat)</option>
                 <option value="Sputum" >Sputum</option>
                 <option value="Endotracheal Aspirate" >Endotracheal Aspirate</option>
@@ -181,16 +187,16 @@
             </select>
         </div>
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-4 col-12">
             <label>Specimen Collection Site</label>
             <input type="text" name="specimen_coll_site"  class="form-control">
         </div>
-        <div class="col-md-3 col-12">
+        {{-- <div class="col-md-3 col-12">
             <label>Specimen Collection Date</label>
             <input type="date" name="specimen_coll_date"  class="form-control">
-        </div>
-        <div class="col-md-3 col-12">
-            <label>Specimen Collection Time</label>
+        </div> --}}
+        <div class="col-md-4 col-12">
+            <label>Specimen Collection Date & Time</label>
             <input type="datetime-local" name="specimen_coll_time"  class="form-control">
         </div>
         {{-- <div class="col-md-3 col-12" style="margin-top: 8px;">
@@ -233,6 +239,7 @@
         <div class="col-md-3 col-12">
             <label>Sputum</label>
             <select name="sputum" class="form-control">
+                <option value="">Select Sputum</option>
                 <option value="1" >Yes</option>
                 <option value="0" >No</option>
             </select>
@@ -263,7 +270,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-12 country-div">
+        <div class="col-md-3 col-12 country-div" style="display: none;">
             <label>Country Visited By You (if yes)</label>
             
             @php
@@ -331,7 +338,7 @@
     </div>
 
     <div class="row" style="padding: 12px 0 0 12px;">
-        <input type="submit" class="btn btn-primary btn-sm" value="Insert Record">
+        <input type="submit" class="btn btn-primary btn-sm submit_btn" id="submit_btn" value="Insert Record">
     </div>
         
 
@@ -364,6 +371,20 @@
                     $('#show-email-2').fadeIn(" slow ");
 
                 });
+
+                $('input:radio[name="travel_history"]').change(function(){
+                    if($(this).val() == 1){
+                        $('.country-div').fadeIn(" slow ");
+                    }else{
+                        $('.country-div').fadeOut(" slow ");
+                    }
+                });
+                
+                $("#patient_form").submit(function () {
+                    $(".submit_btn").attr("disabled", true);
+                    return true;
+                });
+
             });
            </script>
 

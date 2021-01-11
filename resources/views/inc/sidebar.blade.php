@@ -174,6 +174,37 @@
 
         <li class="">
             <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text"> Sliders Management </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="{{  route('sliders.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create New
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                <a href="{{ route('sliders.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        View Record
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-users"></i>
                 <span class="menu-text"> User Management </span>
 
@@ -234,14 +265,14 @@
                         <b class="arrow"></b>
                     </li>
 
-                <li class="">
+                {{-- <li class="">
                 <a href="{{ route('report.index.lab') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Print Report
                     </a>
 
                     <b class="arrow"></b>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
